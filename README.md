@@ -14,6 +14,7 @@ and consecutive releases are diffable.
 |---|---|---|
 | `cyber-metadata-asn.mmdb` | ~1.36 M prefixes | IP prefix → ASN ownership |
 | `cyber-metadata-threat-ioc.mmdb` | ~28 K prefixes | IP prefix → threat-IOC reputation |
+| `whois_public.csv.gz` | ~1.46 M domains | de-identified WHOIS registrations (CSV) |
 | `dataset_manifest.json` | — | release version, per-file rows + SHA-256 |
 
 ### Schema
@@ -35,11 +36,34 @@ and consecutive releases are diffable.
 | `confidence` | string | hit confidence `0–1` |
 | `source` | string | feed id, e.g. `"abuse.ch"` |
 
-Two sibling datasets (IP usage-type MMDB, de-identified WHOIS corpus) are used by
-the scoring engine but are **not offered for download** — see the
-[datasets page](https://ipok.dev/datasets) for what is public and why. Third-party
-geolocation MMDBs (DB-IP, IPinfo) are distributed separately on that page under
-their own CC licenses and are deliberately not part of this repository.
+**`whois_public.csv.gz`** — gzipped CSV, one row per registrable domain,
+**registrant identity fields removed** (the research variant with those fields
+is not distributed):
+
+| Column | Description |
+|---|---|
+| `whois_domain` | registrable domain |
+| `whois_create_date` / `whois_update_date` / `whois_expire_date` | registration dates |
+| `whois_ns` | nameservers |
+| `whois_registrar_name` | registrar |
+| `whois_registrant_country` | registrant country (ISO 3166-1) |
+| `whois_dnssec` | DNSSEC status |
+| `source` | data source id |
+
+The IP usage-type MMDB is used by the scoring engine but **not offered for
+download** — see the [datasets page](https://ipok.dev/datasets) for what is
+public and why.
+
+### Third-party geolocation MMDBs
+
+The `geo-v*` releases mirror two third-party geolocation databases **as-is,
+under their providers' own licenses** — they are *not* covered by this
+repository's dataset terms (see [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md)):
+
+| File | Provider | License |
+|---|---|---|
+| `dbip-city-lite.mmdb` | [DB-IP](https://db-ip.com) | CC BY 4.0 — attribute "IP Geolocation by DB-IP" |
+| `ipinfo-lite.mmdb` | [IPinfo](https://ipinfo.io) | CC BY-SA 4.0 — attribute IPinfo; ShareAlike |
 
 ## Download
 
@@ -49,6 +73,7 @@ their own CC licenses and are deliberately not part of this repository.
 ```
 https://ipok.dev/v1/datasets/current/files/cyber-metadata-asn.mmdb
 https://ipok.dev/v1/datasets/current/files/cyber-metadata-threat-ioc.mmdb
+https://ipok.dev/v1/datasets/current/files/whois_public.csv.gz
 https://ipok.dev/v1/datasets/current/files/dataset_manifest.json
 ```
 
@@ -116,7 +141,13 @@ prior permission. Provided "as is". Full text: [LICENSE.md](LICENSE.md).
 IP 纯净度评分的数据底座：
 
 - **ASN 前缀库**（约 136 万前缀）：IP 前缀 → ASN 归属 / 运营商 / 注册国；
-- **威胁情报 IOC 库**（约 2.8 万前缀）：IP 前缀 → 威胁类型 / 置信度 / 来源。
+- **威胁情报 IOC 库**（约 2.8 万前缀）：IP 前缀 → 威胁类型 / 置信度 / 来源；
+- **WHOIS 域名注册库（公开脱敏版，约 146 万域名）**：域名 / 注册与到期日期 / NS /
+  注册商 / 注册人国家 / DNSSEC——注册人身份字段已全部去除。
+
+另有 `geo-v*` 系列 Release 按月镜像两个第三方定位库（DB-IP City Lite、IPinfo
+Lite），按其各自的 CC 许可原样分发，不适用本仓库的数据条款，详见
+[THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md)。
 
 每个版本附带 manifest（行数 + SHA-256），版本间可
 [在线对比变更](https://ipok.dev/datasets)。可免费用于研究与个人用途，使用时需注明来源
