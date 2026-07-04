@@ -1,7 +1,10 @@
 # Cyber Metadata Datasets
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21193552.svg)](https://doi.org/10.5281/zenodo.21193552)
+
 Self-built, versioned IP-intelligence datasets behind [ipok.dev](https://ipok.dev) —
 MMDB + CSV, one GitHub Release per build, SHA-256 manifest, diffable between versions.
+Every release is archived on Zenodo with its own version DOI.
 
 ## Datasets
 
@@ -51,12 +54,18 @@ Free for research and personal use, attribution to **Cyber Metadata** required;
 no resale or redistribution of the raw files without permission. Full terms:
 [LICENSE.md](LICENSE.md).
 
+Cite the concept DOI (resolves to the latest version); each release also has
+its own version DOI on [Zenodo](https://doi.org/10.5281/zenodo.21193552) for
+exact reproducibility.
+
 ```bibtex
-@misc{cybermetadata-datasets,
-  author       = {Cyber Metadata},
-  title        = {Cyber Metadata Datasets: ASN, Threat-IOC and WHOIS},
-  howpublished = {\url{https://ipok.dev/datasets}},
-  year         = {2026}
+@dataset{cybermetadata-datasets,
+  author    = {Darnell},
+  title     = {Cyber Metadata Datasets: ASN, Threat-IOC and De-identified WHOIS},
+  publisher = {Zenodo},
+  year      = {2026},
+  doi       = {10.5281/zenodo.21193552},
+  url       = {https://ipok.dev/datasets}
 }
 ```
 
