@@ -1,0 +1,30 @@
+{
+  "title": "Cyber Metadata Datasets: ASN, Threat-IOC and De-identified WHOIS",
+  "description": "Self-built, versioned IP-intelligence datasets behind ipok.dev: an IP prefix-to-ASN database (~1.36M prefixes, MMDB), a threat-IOC prefix reputation database (~28K prefixes, MMDB) and a de-identified WHOIS domain-registration corpus (~1.46M domains, CSV). Each release ships a manifest with per-file row counts and SHA-256 checksums; consecutive releases are diffable at https://ipok.dev/datasets.",
+  "creators": [
+    {
+      "name": "Darnell",
+      "affiliation": "Cyber Metadata"
+    }
+  ],
+  "license": "other-open",
+  "access_right": "open",
+  "upload_type": "dataset",
+  "keywords": [
+    "IP intelligence",
+    "ASN",
+    "threat intelligence",
+    "IOC",
+    "WHOIS",
+    "MMDB",
+    "IP reputation",
+    "network measurement"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://ipok.dev/datasets",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
